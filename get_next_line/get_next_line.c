@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:05:48 by tponutha          #+#    #+#             */
-/*   Updated: 2022/09/29 09:55:11 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:38:12 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,13 @@ int main()
 {
 	int fd = open("test.txt", O_RDONLY);
 	char *print;
-	do 
+	print = get_next_line(fd);
+	while (print)
 	{
-		print = get_next_line(fd);
 		printf("%s",print);
 		free(print);
-	} while (print);
+		print = get_next_line(fd)
+	}
 	return (0);
 }
 */
