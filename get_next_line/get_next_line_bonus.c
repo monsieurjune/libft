@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:48:16 by tponutha          #+#    #+#             */
-/*   Updated: 2022/10/09 21:18:00 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/10/10 00:01:53 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ char	*get_next_line(int fd)
 	char		*temp;
 	static char	*text[OPEN_MAX + 1];
 
-	if (fd == -1)
+	if (fd <= -1 || fd > OPEN_MAX)
 		return (NULL);
 	text[fd] = sb_readline(fd, text[fd]);
 	if (!text[fd])

@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:05:48 by tponutha          #+#    #+#             */
-/*   Updated: 2022/10/09 20:46:18 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/10/10 00:04:54 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ char	*get_next_line(int fd)
 	char		*temp;
 	static char	*text;
 
-	if (fd == -1)
+	if (fd <= -1 || fd > OPEN_MAX)
 		return (NULL);
 	text = sb_readline(fd, text);
 	if (!text)
@@ -146,12 +146,12 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*
+
 #include <stdio.h>
 #include <fcntl.h>
 int main()
 {
-	int fd = open("test.txt", O_RDONLY);
+	int fd = open("test", O_RDONLY);
 	char *print;
 	print = get_next_line(fd);
 	while (print)
@@ -160,6 +160,6 @@ int main()
 		free(print);
 		print = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }
-*/
