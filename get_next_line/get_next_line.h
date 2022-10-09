@@ -17,6 +17,11 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 20
+# else
+#  if BUFFER_SIZE <= 0 || BUFFER_SIZE > 0xfffffff
+#   undef BUFFER_SIZE
+#   define BUFFER_SIZE 20
+#  endif
 # endif
 
 char	*get_next_line(int fd);
