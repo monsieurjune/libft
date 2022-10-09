@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:05:48 by tponutha          #+#    #+#             */
-/*   Updated: 2022/10/09 19:59:48 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/10/09 20:46:18 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,46 @@
 
 /*
 GNL INSTRUCTION
-0: Check fd = -1
+0: Check bad fd, if yes then return NULL
 
-1: if EOF(0) or ERROR(-1) check if ram = NULL
-- if yes then return NULL
-- if no then free(ram) before return NULL
+1: Reading BUFFER -> sb_readone()
+- 1. use read() to read file
+- 2. if EOF or ERROR then free(buffer)
+- 3. return byte from read()
 
-2: Read until buffer has \n to buffer -> modifly ft_strjoin
+2: Reading oneline (until has \n) -> sb_readline()
+- 1. use sb_readone() to read text until has \n
+- 2. if ERROR found then free everything and return NULL
+- 3. if EOF meet but no \n then just return
 
 3: Serparate buffer to two part
-- 1. before \n to line -> ft_strdup
-- 2. free ram and add after new line to ram -> modifly ft_substr
+- 1. before \n to line -> ft_strndup
+- 2. after \n to temp -> ft_strndup
+- 3. free current text
+- 4. pointting text to temp
 
-4: free buffer
-
-5: Return line
+4: Return line and save text
 */
 
-// Like ft_strjoin but free old text, box
+// merge text and buff together
+// and free input text & buffer
 
-static char	*sb_strjoin(char *text, char *buffer, size_t buffsize, _Bool tofree)
+static char	*sb_buffmanage(char *text, char *buffer, size_t buffsize)
 {
 	char	*str;
 	size_t	size;
-	size_t	len;
 
-	len = ft_strclen(text, 0);
-	size = len + buffsize + 1;
+	size = ft_strclen(text, 0) + buffsize + 1;
 	str = malloc(sizeof(char) * size);
 	if (str)
-	{
-		str = ft_strncpy(str, text, len);
-		str = ft_strncat(str, buffer, buffsize);
-	}
-	if (tofree || !str)
-	{
-		free(text);
-		free(buffer);
-	}
+		str = ft_strcat(str, text, buffer);
+	free(text);
+	free(buffer);
 	return (str);
 }
 
 // read function is in here
-// 1 -> Normal
-// 0 -> EOF
-// -1 -> Error
+// return byte of what it read
 
 static ssize_t	sb_readone(int fd, char **pbuffer)
 {
@@ -79,7 +74,7 @@ static ssize_t	sb_readone(int fd, char **pbuffer)
 
 // build string until it has \n + extra
 // EOF & Normal give text 
-// ERROR or EOF with no text give NULL
+// ERROR or EOF with text = NULL give NULL
 
 static char	*sb_readline(int fd, char *text)
 {
@@ -94,17 +89,21 @@ static char	*sb_readline(int fd, char *text)
 		if (len == 0)
 			break ;
 		if (len == -1)
+		{
 			free(text);
-		if (len == -1)
 			return (NULL);
+		}
 		i = ft_strclen(buffer, '\n');
 		flag = (buffer[i] != '\n');
-		text = sb_strjoin(text, buffer, len, 1);
+		text = sb_buffmanage(text, buffer, len);
 		if (!flag || !text)
 			break ;
 	}
 	return (text);
 }
+
+// if separate line malloc fail
+// then free everything and return NULL
 
 static char	*sb_failsafe(char *text, char *line, char *temp)
 {
@@ -119,6 +118,7 @@ static char	*sb_failsafe(char *text, char *line, char *temp)
 // text -> line + temp
 // free(text)
 // temp -> text
+// return line
 
 char	*get_next_line(int fd)
 {
@@ -135,8 +135,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	i = ft_strclen(text, '\n');
 	templen = ft_strclen(&text[i + (text[i] != 0)], 0);
-	line = sb_strjoin(NULL, text, i + (text[i] != 0), 0);
-	temp = sb_strjoin(NULL, &text[i + (text[i] != 0)], templen, 0);
+	line = ft_strndup(text, i + (text[i] != 0));
+	temp = ft_strndup(&text[i + (text[i] != 0)], templen);
 	if (!line || !temp)
 		return (sb_failsafe(text, line, temp));
 	free(text);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 05:05:52 by tponutha          #+#    #+#             */
-/*   Updated: 2022/09/21 04:15:32 by tponutha         ###   ########.fr       */
+/*   Created: 2022/10/09 20:45:33 by tponutha          #+#    #+#             */
+/*   Updated: 2022/10/09 20:45:51 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 char	*get_next_line(int fd);
 
 size_t	ft_strclen(const char *str, char c);
-char	*ft_strncpy(char *dest, const char *src, size_t size);
-char	*ft_strncat(char *dest, const char *src, size_t srcsize);
+char    *ft_strndup(const char *s0, size_t len);
+char	*ft_strcat(char *s0, const char *s1, const char *s2);
 
 #endif

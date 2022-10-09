@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:05:46 by tponutha          #+#    #+#             */
-/*   Updated: 2022/10/09 19:54:30 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/10/09 20:46:14 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,47 @@ size_t	ft_strclen(const char *str, char c)
 	return (len);
 }
 
-char	*ft_strncpy(char *dest, const char *src, size_t size)
+char	*ft_strndup(const char *s0, size_t len)
 {
 	size_t	i;
+	char	*s1;
 
 	i = 0;
-	if (!src)
-		src = "";
-	while (src[i] && i < size)
+	s1 = malloc(sizeof(char) * (len + 1));
+	if (!s1)
+		return (NULL);
+	while (i < len)
 	{
-		dest[i] = src[i];
+		s1[i] = s0[i];
 		i++;
 	}
-	dest[i] = 0;
-	return (dest);
+	s1[i] = 0;
+	return (s1);
 }
 
-char	*ft_strncat(char *dst, const char *src, size_t srcsize)
+char	*ft_strcat(char *s0, const char *s1, const char *s2)
 {
 	size_t	i;
-	size_t	destlen;
 
 	i = 0;
-	destlen = ft_strclen(dst, 0);
-	if (!src)
-		src = "";
-	while (src[i] != 0 && i < srcsize)
+	if (!s1)
+		s1 = "";
+	if (!s2)
+		s2 = "";
+	while (*s1 || *s2)
 	{
-		dst[destlen + i] = src[i];
+		if (*s1 != 0)
+		{
+			s0[i] = *s1;
+			s1++;
+		}
+		else
+		{
+			s0[i] = *s2;
+			s2++;
+		}
 		i++;
 	}
-	dst[destlen + i] = 0;
-	return (dst);
+	s0[i] = 0;
+	return (s0);
 }
