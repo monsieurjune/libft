@@ -1,4 +1,4 @@
-TIMEOUT_US				= 1000000
+TIMEOUT_US				= 350000
 
 .DEFAULT_GOAL			= a
 UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp utils/gnl.cpp utils/leaks.cpp
@@ -33,7 +33,7 @@ CFLAGS					= -g3 -Wall -Wextra -Werror
 CPPFLAGS				= -g3 -ldl -std=c++11 -I utils/ -I.. -Wno-everything
 
 UNAME = $(shell uname -s)
-VALGRIND = valgrind -q --leak-check=full
+#VALGRIND = valgrind -q --leak-check=full
 
 $(1MANDATORY): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
