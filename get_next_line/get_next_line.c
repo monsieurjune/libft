@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 05:05:48 by tponutha          #+#    #+#             */
-/*   Updated: 2022/10/09 19:40:21 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:59:48 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*sb_strjoin(char *text, char *buffer, size_t buffsize, _Bool tofree)
 	size_t	size;
 	size_t	len;
 
-	len = ft_strlen(text);
+	len = ft_strclen(text, 0);
 	size = len + buffsize + 1;
 	str = malloc(sizeof(char) * size);
 	if (str)
@@ -60,7 +60,7 @@ static char	*sb_strjoin(char *text, char *buffer, size_t buffsize, _Bool tofree)
 // 0 -> EOF
 // -1 -> Error
 
-static int	sb_readone(int fd, char **pbuffer)
+static ssize_t	sb_readone(int fd, char **pbuffer)
 {
 	ssize_t	byte;
 
@@ -74,7 +74,7 @@ static int	sb_readone(int fd, char **pbuffer)
 		return (byte);
 	}
 	(*pbuffer)[byte] = 0;
-	return (1);
+	return (byte);
 }
 
 // build string until it has \n + extra
@@ -83,28 +83,37 @@ static int	sb_readone(int fd, char **pbuffer)
 
 static char	*sb_readline(int fd, char *text)
 {
-	int		flag;
+	ssize_t	len;
 	size_t	i;
 	char	*buffer;
+	char	flag;
 
 	while (1)
 	{
-		flag = sb_readone(fd, &buffer);
-		if (flag == 0 && text == NULL)
-			return (NULL);
-		if (flag == 0)
+		len = sb_readone(fd, &buffer);
+		if (len == 0)
 			break ;
-		if (flag == -1)
+		if (len == -1)
+			free(text);
+		if (len == -1)
 			return (NULL);
-		i = 0;
-		while (buffer[i] && buffer[i] != '\n')
-			i++;
+		i = ft_strclen(buffer, '\n');
 		flag = (buffer[i] != '\n');
-		text = sb_strjoin(text, buffer, ft_strlen(buffer), 1);
-		if (!flag)
+		text = sb_strjoin(text, buffer, len, 1);
+		if (!flag || !text)
 			break ;
 	}
 	return (text);
+}
+
+static char	*sb_failsafe(char *text, char *line, char *temp)
+{
+	free(text);
+	if (line)
+		free(line);
+	if (temp)
+		free(temp);
+	return (NULL);
 }
 
 // text -> line + temp
@@ -119,24 +128,21 @@ char	*get_next_line(int fd)
 	char		*temp;
 	static char	*text;
 
-	i = 0;
 	if (fd == -1)
 		return (NULL);
 	text = sb_readline(fd, text);
 	if (!text)
 		return (NULL);
-	while (text[i] != '\n' && text[i])
-		i++;
-	templen = ft_strlen(&text[i + (text[i] != 0)]);
+	i = ft_strclen(text, '\n');
+	templen = ft_strclen(&text[i + (text[i] != 0)], 0);
 	line = sb_strjoin(NULL, text, i + (text[i] != 0), 0);
 	temp = sb_strjoin(NULL, &text[i + (text[i] != 0)], templen, 0);
+	if (!line || !temp)
+		return (sb_failsafe(text, line, temp));
 	free(text);
-	text = sb_strjoin(NULL, temp, templen, 1);
+	text = temp;
 	if (text[0] == 0)
-	{
-		free(text);
-		text = NULL;
-	}
+		text = sb_failsafe(text, NULL, NULL);
 	return (line);
 }
 
