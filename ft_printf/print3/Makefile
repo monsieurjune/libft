@@ -1,4 +1,4 @@
-LIBFTPRINTF_DIR = ../
+LIBFTPRINTF_DIR = ../srcs
 ERROR_LIMIT = 0
 
 SHELL = /bin/sh

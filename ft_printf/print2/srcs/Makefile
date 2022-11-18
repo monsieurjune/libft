@@ -1,6 +1,6 @@
 PREFIXE		= ./
 
-LIBPATH		= ../../
+LIBPATH		= ../../srcs
 
 SRCS		= $(addprefix ${PREFIXE}, main_tester.c)
 

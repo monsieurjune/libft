@@ -7,8 +7,9 @@ UTILS_PATH		= utils/
 UTILS			= $(addprefix $(UTILS_PATH), sigsegv.cpp color.cpp check.cpp leaks.cpp)
 
 TESTS_PATH		= tests/
-MANDATORY		= c s p d i u x upperx percent mix
+LIB_PATH		= ../srcs
 
+MANDATORY		= c s p d i u x upperx percent mix
 BONUS			= minus 0 dot sharp space +
 
 CC				= clang++ -std=c11 -Wno-everything
@@ -21,23 +22,23 @@ UNAME = $(shell uname -s)
 #VALGRIND = valgrind -q --leak-check=full
 
 $(MANDATORY): %: mandatory_start
-	@$(CC) $(CFLAGS) -D TIMEOUT_US=$(TIMEOUT_US) $(UTILS) $(TESTS_PATH)$*_test.cpp -L.. -lftprintf -o $*_test && $(VALGRIND) ./$*_test $(TEST_NUMBER) && rm -f $*_test
+	@$(CC) $(CFLAGS) -D TIMEOUT_US=$(TIMEOUT_US) $(UTILS) $(TESTS_PATH)$*_test.cpp -L$(LIB_PATH) -lftprintf -o $*_test && $(VALGRIND) ./$*_test $(TEST_NUMBER) && rm -f $*_test
 
 $(BONUS): %: bonus_start
-	@$(CC) $(CFLAGS) -D TIMEOUT_US=$(TIMEOUT_US) $(UTILS) $(TESTS_PATH)$*_test.cpp -L.. -lftprintf -o $*_test && $(VALGRIND) ./$*_test $(TEST_NUMBER) && rm -f $*_test
+	@$(CC) $(CFLAGS) -D TIMEOUT_US=$(TIMEOUT_US) $(UTILS) $(TESTS_PATH)$*_test.cpp -L$(LIB_PATH) -lftprintf -o $*_test && $(VALGRIND) ./$*_test $(TEST_NUMBER) && rm -f $*_test
 
 mandatory_start: checkmakefile
 	@tput setaf 6
-	@make -C ..
+	@make -C $(LIB_PATH)
 	@tput setaf 4 && echo [Mandatory]
 
 bonus_start: checkmakefile
 	@tput setaf 6
-	@make bonus -C ..
+	@make bonus -C $(LIB_PATH)
 	@tput setaf 5 && echo [Bonus]
 
 checkmakefile:
-	@ls .. | grep Makefile > /dev/null 2>&1 || (tput setaf 1 && echo Makefile not found. && exit 1)
+	@ls $(LIB_PATH) | grep Makefile > /dev/null 2>&1 || (tput setaf 1 && echo Makefile not found. && exit 1)
 
 $(addprefix docker, $(MANDATORY)) $(addprefix docker, $(BONUS)) dockerm dockerb dockera: docker%:
 	@docker rm -f mc > /dev/null 2>&1
@@ -51,9 +52,9 @@ b: $(BONUS)
 a: m b 
 
 clean:
-	make clean -C .. && rm -rf *_test && rm -rf *_test.dSYM
+	make clean -C $(LIB_PATH) && rm -rf *_test && rm -rf *_test.dSYM
 
 fclean:
-	make fclean -C .. && rm -rf *_test && rm -rf *_test.dSYM
+	make fclean -C $(LIB_PATH) && rm -rf *_test && rm -rf *_test.dSYM
 
 .PHONY:	mandatory_start m bonus_start b a clean update fclean

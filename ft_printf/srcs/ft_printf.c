@@ -6,11 +6,12 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 04:16:33 by tponutha          #+#    #+#             */
-/*   Updated: 2022/09/21 00:14:39 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/11/07 00:17:54 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "builtin.h"
 
 /* This function do
 1. print variable
@@ -18,13 +19,11 @@
 3. return length of thing it printed
 */
 
-static int	sb_print_argument(const char **pstr, va_list arg)
+static int	sb_print_argument(int fd, const char **pstr, va_list arg)
 {
-	char	*alphabet;
-	char	type;
+	t_print	data;
 
-	type = (*pstr)[1];
-	*pstr += 1 + (type != 0);
+	data = ;
 	if (type == 's')
 		return (ft_put_str(va_arg(arg, const char *)));
 	if (type == 'p')
@@ -36,37 +35,53 @@ static int	sb_print_argument(const char **pstr, va_list arg)
 	if (type == 'x' || type == 'X')
 		return (ft_put_hex(va_arg(arg, unsigned int), (type == 'x')));
 	if (type == '%' || type == 'c')
-	{
-		alphabet = "%";
-		if (type == 'c')
-			alphabet = va_arg(arg, char *);
-		write(1, alphabet, 1);
-		return (1);
-	}
+		return ();
 	return (0);
+}
+
+static int	sb_mass_writer(int fd, const char *format, va_list args, int len)
+{
+	int	len;
+
+	len = 0;
+	while (format[len])
+	{
+
+	}
+}
+
+int	ft_vfdprintf(int fd, const char *format, va_list args)
+{
+	int	len;
+
+	len = 0;
+	if (!format)
+		return (0);
+	while (format[len])
+	{
+		`
+	}
+	return (len);
+}
+
+int	ft_fdprintf(int fd, const char *format, ...)
+{
+	int		len;
+	va_list	args;
+
+	va_start(args, format);
+	len = ft_vfdprintf(fd, format, args);
+	va_end(args);
+	return (len);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int			len;
-	va_list		args;
+	int		len;
+	va_list	args;
 
-	len = 0;
 	va_start(args, format);
-	if (format)
-	{
-		while (*format)
-		{
-			if (*format == '%')
-			{
-				len += sb_print_argument(&format, args);
-				continue ;
-			}
-			write(1, format, 1);
-			len++;
-			format++;
-		}
-	}
+	len = ft_vfdprintf(1, format, args);
 	va_end(args);
 	return (len);
 }
@@ -77,7 +92,8 @@ int main()
 {
 	char *a = "OK BOOMER";
 	// char *b = "aerfgmsfdndnfglnzd;dfkmkmlkzmdf";
-	ft_printf("%c is it shall work?, oh well look at this %u, and this %p -> %s\n", 'a', 7u, a, a);
+	ft_printf("%c is it shall work?, oh well look at this %u,
+	 and this %p -> %s\n", 'a', 7u, a, a);
 	return 0;
 }
 */

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path=../ft_printf # Your printf project dir
+path=../srcs # Your printf project dir
 libname=libftprintf.a # Your printf lib name
 timer=0 # Wait after each log 
 
