@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 20:07:25 by tponutha          #+#    #+#             */
-/*   Updated: 2022/12/25 07:55:17 by tponutha         ###   ########.fr       */
+/*   Updated: 2022/12/25 18:42:47 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 6.) '#' -> %x %X put 0x || 0X
 7.) '*' passing next arg to this as int, can override width but not precise
 	and if * is consecutive then last one is legit
+8.) NOTE that recent width and precise is legit,
 */
 
 typedef struct s_print
