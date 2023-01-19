@@ -5,52 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/25 05:21:54 by tponutha          #+#    #+#             */
-/*   Updated: 2022/12/25 07:49:36 by tponutha         ###   ########.fr       */
+/*   Created: 2023/01/19 20:04:44 by tponutha          #+#    #+#             */
+/*   Updated: 2023/01/19 20:48:21 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-// width should start at num that not zero
+int	sb_minlen()
 
-int ft_flaglen(const char *format, va_list arg_copy)
+int	sb_precision()
+
+int sb_etcflag()
+
+int	sb_flagsize(const char *format, va_list *arg_copy, int *ii)
 {
-    int i;
-    int minwidth;
-    int preslen;
-    int flaglen;
+	t_print temp;
+	int		j;
 
-    i = 0;
-    minwidth = 0;
-    preslen = 0;
-    flaglen = 1;
-    while (ft_isprintflag(format[i]))
-    {
-        if (format[i] > '0' && format[i] <= '9')
-            minwidth = ft_atol_overflow(&format[i]);
-        if (format[i] == '.')
-        i++;
-    }
+	j = 0;
+	while (ft_isprint_item(format[j]))
+	{
+		if (format[j] > '0' && format[j] <= '9')
+			djgj
+		if (format[j] == '.')
+			hnfgdk
+		if (format[j] == '+' || format[j] == '')
+			jfkjd
+		j++;
+	}
+	return ()
 }
 
-int ft_estimator(const char *format, va_list arg_copy)
+int	ft_estimator(const char *format, va_list *arg_copy)
 {
-    int flaglen;
-    int i;
-    int position;
+	int	pos;
+	int	i;
+	int	flagsize;
 
-    i = 0;
-    flaglen = 0;
-    position = 0;
-    while (format[i])
-    {
-        if (format[i] == '%')
-            flaglen = ft_flaglen(format, arg_copy);
-        if (flaglen + position < 0)
-            return (position);
-        i++;
-    }
-    position = i;
-    return (position);
+	i = 0;
+	pos = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+			flagsize = sb_flagsize(&format[i], arg_copy, &i);
+		if (pos + flagsize < 0)
+			return (pos);
+		pos = i;
+		i++;
+	}
+	return (i);
 }

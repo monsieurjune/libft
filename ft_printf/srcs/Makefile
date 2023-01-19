@@ -6,7 +6,7 @@
 #    By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/29 03:48:25 by tponutha          #+#    #+#              #
-#    Updated: 2022/12/25 05:37:06 by tponutha         ###   ########.fr        #
+#    Updated: 2023/01/19 20:04:37 by tponutha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,28 +21,13 @@ CFLAG	= -Wall -Werror -Wextra
 
 # Main Directory
 MAIN_DIR	= ./
-MAIN_FILE	= ft_printf.c
+MAIN_FILE	= ft_printf.c ft_atoi.c ft_bool.c ft_printer.c ft_estimator.c
 MAIN_SRCS	= $(addprefix $(MAIN_DIR), $(MAIN_FILE))
 
-# Error Handler
-ERR_DIR		= error/
-ERR_FILE	= 
-ERR_SRCS	= $(addprefix $(ERR_DIR), $(ERR_FILE))
-
-# Flag Handler
-FLAG_DIR	= flag/
-FLAG_FILE	= 
-FLAG_SRCS	= $(addprefix $(FLAG_DIR), $(FLAG_FILE))
-
-# Conversion Handler
-CONV_DIR	= conv/
-CONV_FILE	= 
-CONV_SRCS	= $(addprefix $(CONV_DIR), $(CONV_FILE))
-
 # Complie Process
-SRCS	= $(MAIN_SRCS) $(ERR_SRCS) $(FLAG_SRCS) $(CONV_SRCS)
+SRCS	= $(MAIN_SRCS)
 OBJ		= $(SRCS:.c=.o)
-IFLAG	= -I$(MAIN_DIR) -I$(ERR_DIR) -I$(FLAG_DIR) -I$(CONV_DIR)
+IFLAG	= -I$(MAIN_DIR)
 .c.o:
 	$(COM) $(CFLAG) -c $(IFLAG) $< -o $(<:.c=.o)
 

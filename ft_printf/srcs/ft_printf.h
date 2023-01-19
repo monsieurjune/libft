@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 20:10:14 by tponutha          #+#    #+#             */
-/*   Updated: 2022/11/06 00:35:24 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:39:27 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 # define FT_PRINTF_H
 
 int	ft_printf(const char *format, ...);
-int	ft_fdprintf(int fd, const char *format, ...);
 
 #endif

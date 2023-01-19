@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 20:07:25 by tponutha          #+#    #+#             */
-/*   Updated: 2022/12/25 18:42:47 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:46:18 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@
 #  define FALSE 0
 # endif
 
-# ifndef WEIRD_PRECISION_1
-#  define WEIRD_PRECISION_1 2147483648l
-# endif
-
-# ifndef WEIRD_PRECISION_2
-#  define WEIRD_PRECISION_2 2147483649l
-# endif
-
 # ifndef SPECIFIER
 #  define SPECIFIER "cspdiuxX%"
 # endif
@@ -42,8 +34,8 @@
 # endif
 
 /* FLAG -> Type
-1.) '-' -> everything
-2.) '0' -> everything, can ignore by - .
+1.) '-' -> put minwidth at right, everything
+2.) '0' -> replace ' ' with 0, everything, can ignore by - .
 3.) '.' -> %d, %i, %x , %X as fill 0 | %s as print n charators
 	every digits that near . is consider precise, otherwise it is width
 4.) '+' -> %d, %i
@@ -70,9 +62,12 @@ typedef struct s_print
 long			ft_atol_overflow(const char *str);
 unsigned long	ft_atoul_overflow(const char *str);
 
-int				ft_isprintflag(char c);
+int 			ft_isprint_flag(const char c);
+int				ft_isprint_item(const char c);
 int				ft_isdigit(const char c);
 
-int ft_estimator(const char *format, va_list arg_copy);
+int 			ft_estimator(const char *format, va_list *arg_copy);
+
+int				ft_printer(const char *format, va_list *args, int maxlen);
 
 #endif
