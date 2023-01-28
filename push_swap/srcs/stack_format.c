@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:32:24 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/28 21:25:47 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/01/29 05:36:59 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ static int	sb_check_format(char *str)
 		return (FALSE);
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (!(str[i] > '0' && str[i] <= '9'))
+	if (!(str[i] >= '0' && str[i] <= '9'))
+		return (FALSE);
+	if (str[i] == '0' && str[i + 1] != '\0')
 		return (FALSE);
 	while (str[i] != '\0')
 	{
@@ -61,17 +63,22 @@ static int	sb_check_format(char *str)
 	return (str[i - 1] >= '0' && str[i - 1] <= '9');
 }
 
-int	*ft_atoi_array(int ac, char **av, t_listmem **head)
+// ac = N
+// av last pos = N - 1
+// size = N - 1, ac - 1
+// array last pos = N - 2
+// Copy av to int array while maintain order
+
+static int	*sb_atoi_array(int ac, char **av, t_listmem **head)
 {
 	long	temp;
 	int		*res;
 	int		i;
-	int		j;
 
-	i = 1;
 	res = lm_malloc(sizeof(int), ac - 1, head);
 	if (res == NULL)
 		return (NULL);
+	i = 1;
 	while (i < ac)
 	{
 		if (!sb_check_format(av[i]))
@@ -83,4 +90,18 @@ int	*ft_atoi_array(int ac, char **av, t_listmem **head)
 		i++;
 	}
 	return (res);
+}
+
+t_stack	*stack_check_array(int ac, char **av, t_listmem **head)
+{
+	t_stack	*stack;
+	int		*og;
+
+	og = sb_atoi_array(ac, av, head);
+	if (og == NULL)
+		return (NULL);
+	if(stack_isduplicate(og, ac - 1, head))
+		return (NULL);
+	stack = stack_build(og, ac - 1, head);
+	return (stack);
 }

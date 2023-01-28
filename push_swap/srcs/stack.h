@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:53:41 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/28 21:23:43 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/01/29 05:27:34 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,15 @@ void	stack_pop_push(t_stack **dest, t_stack **src);
 void	stack_rotate(t_stack **stack);
 void	stack_reverse_rotate(t_stack **stack);
 
+// stack_utility.c
+void	*stack_memset(void *ptr, int c, size_t byte);
+void	stack_exit(t_listmem **head);
+void	*stack_memmove(void *dst, const void *src, size_t byte);
+
+// stack_number.c
+int		stack_isduplicate(int *arr, int size, t_listmem **head);
+
+// stack_format.c
+t_stack	*stack_check_array(int ac, char **av, t_listmem **head);
 
 #endif

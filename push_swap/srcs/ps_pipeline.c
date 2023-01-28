@@ -6,13 +6,13 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 17:46:43 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/28 21:59:55 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/01/29 05:40:44 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	ps_print_cmd(int cmd)
+static void	ps_print_cmd(int cmd)
 {
 	if (cmd == SWAP_A)
 		write(1, STR_SWAP_A, 3);
@@ -38,7 +38,7 @@ void	ps_print_cmd(int cmd)
 		write(1, STR_REV_ROTATE_AB, 4);
 }
 
-void	ps_do_both(int cmd, t_stack **a, t_stack **b)
+static void	ps_do_both(int cmd, t_stack **a, t_stack **b)
 {
 	if (cmd == SWAP_AB)
 	{
@@ -130,6 +130,6 @@ int	main(int ac, char **av)
 		ps_pipeline(cmd, &a, &b);
 		test_print(a, b);
 	}
-	ft_exit(&head);
+	stack_exit(&head);
 }
 */
