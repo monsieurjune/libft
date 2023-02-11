@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 01:32:41 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/29 05:39:48 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/01/29 05:50:51 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	t_stack		*a;
 	t_stack		*b;
 
-	if (ac < 3)
+	if (ac <= 1)
 		return (0);
 	ps = NULL;
 	a = stack_check_array(ac, av, &ps);

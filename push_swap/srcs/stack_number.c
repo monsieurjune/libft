@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 03:39:22 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/29 05:20:54 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:49:15 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	*sb_countsort(int *arr, int size, long power, t_listmem **head)
 
 	output = lm_malloc(sizeof(int), size, head);
 	if (output == NULL)
-		return (NULL);
+		stack_exit(head);
 	sb_counter(arr, size, bucket, power);
 	i = size - 1;
 	while (i >= 0)
@@ -87,17 +87,15 @@ static int	*sb_radixsort_array(int *arr, int size, t_listmem **head)
 	long	power;
 	int		max;
 
-	max = sb_get_absulutemax(arr, size);
 	power = 1;
+	max = sb_get_absulutemax(arr, size);
 	copy = lm_malloc(sizeof(int), size, head);
 	if (copy == NULL)
-		return (NULL);
+		stack_exit(head);
 	copy = stack_memmove(copy, arr, size * sizeof(int));
 	while (max / power != 0)
 	{
 		copy = sb_countsort(copy, size, power, head);
-		if (copy == NULL)
-			return (NULL);
 		power *= 128;
 	}
 	return (copy);
@@ -110,8 +108,6 @@ int	stack_isduplicate(int *arr, int size, t_listmem **head)
 
 	i = 1;
 	copy = sb_radixsort_array(arr, size, head);
-	if (copy == NULL)
-		return (TRUE);
 	while (i < size)
 	{
 		if (copy[i] == copy[i - 1])

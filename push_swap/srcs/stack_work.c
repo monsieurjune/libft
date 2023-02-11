@@ -6,7 +6,7 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:55:23 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/28 21:34:50 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:20:26 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_stack	*stack_build(int *arr, int size, t_listmem **head)
 	{
 		node = stack_create_node(arr[size - 1], head);
 		if (node == NULL)
-			return (NULL);
+			stack_exit(head);
 		stack_push(&stack, node);
 		size--;
 	}

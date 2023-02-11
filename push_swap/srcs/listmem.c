@@ -6,11 +6,13 @@
 /*   By: tponutha <tponutha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 23:47:56 by tponutha          #+#    #+#             */
-/*   Updated: 2023/01/28 23:37:26 by tponutha         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:05:20 by tponutha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "listmem.h"
+
+// if alloc node fail then free mem
 
 static t_listmem	*lm_create_node(void *mem)
 {
