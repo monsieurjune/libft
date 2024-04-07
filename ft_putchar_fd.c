@@ -14,18 +14,6 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (fd != -1)
+	if (fd >= 0)
 		write(fd, &c, 1);
 }
-
-/*
-#include <fcntl.h>
-int main()
-{
-	int fd;
-	fd = open("test.txt", O_RDWR);
-	ft_putchar_fd('A', fd);
-	close(fd);
-	return (0);
-}
-*/

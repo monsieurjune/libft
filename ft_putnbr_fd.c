@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (fd != -1)
+	if (fd >= 0)
 	{
 		if (n == -2147483648)
 			write(fd, "-2147483648", 11);
@@ -31,15 +31,3 @@ void	ft_putnbr_fd(int n, int fd)
 		}
 	}
 }
-
-/*
-#include <fcntl.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	int fd;
-	fd = open("test.txt", O_RDWR);
-	ft_putnbr_fd(atoi(av[1]), fd);
-	close(fd);
-}
-*/
