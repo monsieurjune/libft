@@ -24,20 +24,3 @@ void	*ft_calloc(size_t byte, size_t size)
 		return (NULL);
 	return (ft_memset(mem, 0, byte));
 }
-
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	int *a = ft_calloc(ac, 4);
-	for (int i = 0; i < ac; i++)
-	{
-		a[i] = atoi(av[i]);
-	}
-	for (int i = 0; i < ac; i++)
-	{
-		printf("%d.) %d\n", i, a[i]);
-	}
-	return (0);
-}
-*/

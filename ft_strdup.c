@@ -30,17 +30,3 @@ char	*ft_strdup(const char *src)
 	(void)ft_strlcpy(dest, src, len + 1);
 	return (dest);
 }
-
-/*
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	if (ac != 2)
-		return (0);
-	char *b;
-	b = ft_strdup(av[1]);
-	printf("%s\n",b);
-	free(b);
-	return (0);
-}
-*/

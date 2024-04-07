@@ -19,16 +19,3 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 	del(lst->content);
 	free(lst);
 }
-
-/*
-int main()
-{
-	t_list *l = NULL;
-	ft_lstdelone(l, free);
-	for (int i = 0; i < 100; i++)
-		ft_lstadd_back(&l, ft_lstnew(&"5"));
-		//ft_lstadd_back(&l, ft_lstnew(calloc(sizeof(int), 5)));
-	ft_lstclear(&l, free);
-	return (0);
-}
-*/

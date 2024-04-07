@@ -57,32 +57,3 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (head);
 }
-
-/*
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-{
-	t_list	*node;
-	t_list	*newlst;
-
-	newlst = NULL;
-	while (lst)
-	{
-		node = ft_lstnew(NULL);
-		if (!node)
-		{
-			ft_lstclear(&newlst, del);
-			return (NULL);
-		}
-		node->content = f(lst->content);
-		if (!node->content)
-		{
-			free(node);
-			ft_lstclear(&newlst, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&lst, node);
-		lst = lst->next;
-	}
-	return (newlst);
-}
-*/

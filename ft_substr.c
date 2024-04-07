@@ -32,18 +32,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	(void)ft_strlcpy(d, &s[i], len + 1);
 	return (d);
 }
-
-/*
-#include <stdio.h>
-#include <string.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	char *ab;
-	ab = ft_substr("BONJOUR LES HAIRCOTS !", atoi(av[2]), atoi(av[3]));
-	printf("%s [%d,%d] --> %s\n", "BONJOUR LES HAIRCOTS !",
-	atoi(av[2]), atoi(av[3]), ab);
-	free(ab);
-	return (0);
-}
-*/

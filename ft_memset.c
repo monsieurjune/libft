@@ -26,36 +26,3 @@ void	*ft_memset(void *ptr, int c, size_t byte)
 	}
 	return (ptr);
 }
-
-/*
-#include <string.h>
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	int bit = atoi(av[1]);
-	int bits = atoi(av[2]);
-
-	int i = 0;
-	int *b = malloc(7 * 4);
-	b = memset(b, bit, bits);
-	printf("------------STD-------------\n");
-	while (i < 6)
-	{
-		printf("%d.) %d\n", i, b[i]);
-		i++;
-	}
-	int *c = malloc(7 * 4);
-	c = ft_memset(c, bit, bits);
-	i = 0;
-	printf("------------USR-------------\n");
-	while (i < 7)
-	{
-		printf("%d.) %d\n", i, c[i]);
-		i++;
-	}
-	free(b);
-	free(c);
-	return (0);
-}
-*/

@@ -29,13 +29,3 @@ char	*ft_strchr(const char *str, int c)
 		return ((char *)str);
 	return (NULL);
 }
-
-/*
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%s",ft_strchr(av[1], 't' + 256));
-	return 0;
-}
-*/

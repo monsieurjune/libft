@@ -16,10 +16,4 @@ int	ft_tolower(int c)
 {
 	return (c + 32 * (c >= 'A' && c <= 'Z'));
 }
-/*
-#include <stdio.h>
-int main()
-{
-	printf("%d\n",ft_tolower('A') == 'a');
-}
-*/
+

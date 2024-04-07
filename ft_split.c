@@ -99,20 +99,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (sub_alloc_box(s, c, len, 0));
 }
-
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	int i = 0;
-	(void)ac;
-	char **a = ft_split(av[1], av[2][0]);
-	while (a[i])
-	{
-		printf("%d.) %s\n", i, a[i]);
-		i++;
-	}
-	(void)sub_failsafe(a);
-	return (0);
-}
-*/

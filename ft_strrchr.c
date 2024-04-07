@@ -31,13 +31,3 @@ char	*ft_strrchr(const char *str, int c)
 		return ((char *)&str[lastpos]);
 	return (NULL);
 }
-
-/*
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%s",ft_strrchr(av[1], av[2][0]));
-	return 0;
-}
-*/

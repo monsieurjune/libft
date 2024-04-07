@@ -31,13 +31,3 @@ int	ft_memcmp(const void *p1, const void *p2, size_t n)
 	}
 	return (m1[i - (i == n)] - m2[i - (i == n)]);
 }
-
-/*
-#include <stdio.h>
-#include <string.h>
-int main()
-{
-	printf("%d\n", memcmp("Hello", "World", 0));
-	return (0);
-}
-*/

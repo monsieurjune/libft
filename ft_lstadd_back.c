@@ -27,28 +27,3 @@ void	ft_lstadd_back(t_list **lst, t_list *newc)
 	else
 		*lst = newc;
 }
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	t_list	*a;
-	t_list	*b;
-	int  i = 1;
-	a = malloc(sizeof(t_list));
-	a->content = av[0];
-	a->next = NULL;
-	while (i < ac)
-	{
-		b = malloc(sizeof(t_list));
-		b->content = av[i];
-		b->next = NULL;
-		ft_lstadd_back(&a, b);
-		i++;
-	}
-	while (a)
-	{
-		printf("%s\n", (char *)a->content);
-		a = a->next;
-	}
-}
-*/

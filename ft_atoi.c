@@ -37,14 +37,3 @@ int	ft_atoi(const char *str)
 	}
 	return (neg * sum);
 }
-
-/*
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("STD : %d\n", atoi(av[1]));
-	printf("USR : %d\n", ft_atoi(av[1]));
-	return (0);
-}
-*/

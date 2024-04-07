@@ -26,15 +26,3 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		}
 	}
 }
-
-/*
-#include <stdio.h>
-int main()
-{
-	char *a = "00000000000000";
-	printf("%s\n",a);
-	ft_striteri(a, ax);
-	printf("%s\n",a);
-	return (0);
-}
-*/

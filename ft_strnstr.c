@@ -44,39 +44,3 @@ char	*ft_strnstr(const char *str, const char *find, size_t n)
 	}
 	return (NULL);
 }
-
-/*
-#include <stdio.h>
-#include <string.h>
-
-char *
-strnstr(const char *s, const char *find, size_t slen)
-{
-	char c, sc;
-	size_t len;
-
-	if ((c = *find++) != '\0') {
-		len = strlen(find);
-		do {
-			do {
-				if (slen-- < 1 || (sc = *s++) == '\0')
-					return (NULL);
-			} while (sc != c);
-			if (len > slen)
-				return (NULL);
-		} while (strncmp(s, find, len) != 0);
-		s--;
-	}
-	return ((char *)s);
-}
-
-int	main(int ac, char **av)
-{
-	(void)ac;
-    char *a = strnstr(av[1], av[2], atoi(av[3]));
-	char *b = ft_strnstr(av[1], av[2], atoi(av[3]));
-    printf("STD : %s : (%s) ---> |%s\n",av[1],av[2],a);
-	printf("USR : %s : (%s) ---> |%s\n",av[1],av[2],b);
-	return (0);
-}
-*/

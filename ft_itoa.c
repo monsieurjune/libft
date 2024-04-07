@@ -52,14 +52,3 @@ char	*ft_itoa(int n)
 	str[len] = 0;
 	return (str);
 }
-
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	char *a = ft_itoa(atoi(av[1]));
-	printf("%s\n", a);
-	free(a);
-}
-*/

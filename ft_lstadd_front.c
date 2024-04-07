@@ -20,22 +20,3 @@ void	ft_lstadd_front(t_list **lst, t_list *newc)
 	*lst = newc;
 	(*lst)->next = oldhead;
 }
-
-/*
-int main(int ac, char **av)
-{
-	t_list	*ls1;
-	t_list	*ls2;
-
-	ls1 = NULL;
-	ls2 = NULL;
-	for (int i = 1; i < ac; i++)
-	{
-		ft_lstadd_front(&ls1, ft_lstnew(ft_strdup(av[i])));
-		ft_lstadd_back(&ls2, ft_lstnew(ft_strdup(av[i])));
-	}
-	ft_lstclear(&ls1, free);
-	ft_lstclear(&ls2, free);
-	return (0);
-}
-*/

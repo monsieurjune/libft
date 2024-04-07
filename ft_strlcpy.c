@@ -31,31 +31,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	dst[size - 1] = 0;
 	return (srclen);
 }
-
-/*
-#include <string.h>
-size_t strlcpy(char * restrict dst, const char * restrict src, size_t maxlen) {
-    const size_t srclen = strlen(src);
-    if (srclen < maxlen) {
-        memcpy(dst, src, srclen+1);
-    } else if (maxlen != 0) {
-        memcpy(dst, src, maxlen-1);
-        dst[maxlen-1] = '\0';
-    }
-    return srclen;
-}
-
-#include <stdio.h>
-
-int main(int ac, char **av)
-{
-	(void)ac;
-	char a[30];
-	memset(a, 'A', 30);
-	char b[30];
-	unsigned long la = strlcpy(a,"",atoi(av[2]));
-	unsigned long lb = ft_strlcpy(b, "", atoi(av[2]));
-	printf("STD : %ld -> %s\n", la, a);
-	printf("USR : %ld -> %s\n", lb, b);
-}
-*/

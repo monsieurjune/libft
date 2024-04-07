@@ -31,17 +31,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	(void)ft_strlcat(str, s2, size);
 	return (str);
 }
-
-/*
-#include <stdio.h>
-#include <string.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	char *a = ft_strjoin(NULL, av[2]);
-	printf("%s + %s = %s\n",av[1],av[2],a);
-	printf("%d\n", strcmp(a, "42"));
-	free(a);
-	return (0);
-}
-*/

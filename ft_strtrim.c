@@ -82,15 +82,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	(void)ft_strlcpy(str, &s1[firstpos], size);
 	return (str);
 }
-
-/*
-#include <stdio.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	char *a = ft_strtrim(av[1], " ");
-	printf("%s --> %s\n",av[1],a);
-	free(a);
-	return (0);
-}
-*/
