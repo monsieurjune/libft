@@ -10,52 +10,89 @@
 #                                                                              #
 # **************************************************************************** #
 
-DIRC = ./
+# Program Description
+NAME				= libft.a
 
-NAME = libft.a
+# Compiler Properties
+CC					= cc
+CFLAG				= -Wall -Werror -Wextra
+RM					= rm -f
 
-MAN = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
-	ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcpy.c \
-	ft_memcmp.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c \
-	ft_putnbr_fd.c ft_putstr_fd.c ft_strchr.c ft_strdup.c ft_strlcat.c ft_striteri.c\
-	ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_substr.c \
-	ft_tolower.c ft_toupper.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
-	ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+# Source
+ROOT_SRC_PATH		= ./
+LIBFT_HEADER		= ./libft.h
+MANDATORY_SRC		= ft_atoi.c \
+						ft_bzero.c \
+						ft_calloc.c \
+						ft_isalnum.c \
+						ft_isalpha.c \
+						ft_isascii.c \
+						ft_isdigit.c \
+						ft_isprint.c \
+						ft_itoa.c \
+						ft_memchr.c \
+						ft_memcpy.c \
+						ft_memcmp.c \
+						ft_memmove.c \
+						ft_memset.c \
+						ft_strchr.c \
+						ft_strdup.c \
+						ft_strlcat.c \
+						ft_striteri.c \
+						ft_strlcpy.c \
+						ft_strlen.c \
+						ft_strncmp.c \
+						ft_strnstr.c \
+						ft_strrchr.c \
+						ft_substr.c \
+						ft_tolower.c \
+						ft_toupper.c \
+						ft_strjoin.c \
+						ft_strtrim.c \
+						ft_split.c \
+						ft_itoa.c \
+						ft_strmapi.c \
+						ft_putchar_fd.c \
+						ft_putstr_fd.c \
+						ft_putendl_fd.c \
+						ft_putnbr_fd.c
 
-BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
+BONUS_SRC			= ft_lstnew.c \
+						ft_lstadd_front.c \
+						ft_lstsize.c \
+						ft_lstlast.c \
+						ft_lstadd_back.c \
+						ft_lstdelone.c \
+						ft_lstclear.c \
+						ft_lstiter.c \
+						ft_lstmap.c
 
-COM = gcc
+MANDATORY_SRCS		= $(addprefix $(ROOT_SRC_PATH), $(MANDATORY_SRC))
+BONUS_SRCS			= $(addprefix $(ROOT_SRC_PATH), $(BONUS_SRC))
 
-FLAG = -Wall -Werror -Wextra
+# Object
+MANDATORY_OBJS		= $(MANDATORY_SRCS:.c=.o)
+BONUS_OBJS			= $(BONUS_SRCS:.c=.o)
+LIBFT_OBJS			= $(MANDATORY_OBJS) $(BONUS_OBJS)
 
-RM = rm -f
+# Object Compile Setting
+%.o: %.c $(LIBFT_HEADER) Makefile
+	$(CC) $(CFLAG) -c $< -o $(<:.c=.o)
 
-SRCMAN = $(addprefix $(DIRC), $(MAN))
-
-SRCBONUS = $(addprefix $(DIRC), $(BONUS))
-
-OBJMAN = $(SRCMAN:.c=.o)
-
-OBJBONUS = $(OBJMAN) $(SRCBONUS:.c=.o)
-
-.c.o:
-	$(COM) $(FLAG) -c $< -o $(<:.c=.o)
-
+# Main Rules
 all:	$(NAME)
 
-$(NAME):	$(OBJMAN)
-	ar rc $(NAME) $(OBJMAN)
+$(NAME):	$(LIBFT_OBJS)
+	ar rcs $(NAME) $(LIBFT_OBJS)
 
 clean:
-	$(RM) $(OBJBONUS)
+	$(RM) $(LIBFT_OBJS)
 
 fclean:	clean
 	$(RM) $(NAME)
 
-bonus:	$(OBJBONUS)
-	ar rc $(NAME) $(OBJBONUS)
+bonus:	$(NAME)
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re bonus
