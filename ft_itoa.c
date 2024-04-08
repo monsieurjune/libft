@@ -37,7 +37,7 @@ char	*ft_itoa(int n)
 	int		len;
 	char	*str;
 
-	if (n == INTMIN)
+	if (n == INT32_MIN)
 		return (ft_memcpy(malloc(sizeof(char) * 12), "-2147483648", 12));
 	len = sub_intlen(n);
 	str = malloc(sizeof(char) * (len + 1));
